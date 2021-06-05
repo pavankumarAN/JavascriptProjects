@@ -6,8 +6,15 @@ const img = document.querySelector('img');
 const url = `https://api.chucknorris.io/jokes/random`;
 
 btn.addEventListener('click', () => {
-    loadJoke(url)
-        .then((response) => displayData(response))
+    //Promise approach
+    // loadJoke(url)
+    //     .then((response) => displayData(response))
+    //     .catch(err => console.log(err));
+
+    // fetch approach
+    fetch(url)
+        .then((data) => data.json())
+        .then(response => displayData(response))
         .catch(err => console.log(err));
 });
 
@@ -35,7 +42,11 @@ function loadJoke(url) {
 
 function displayData(data) {
     console.log(data);
-    const resObject = JSON.parse(data.responseText);
+    // Promise approach
+    // const resObject = JSON.parse(data.responseText);
+
+    // fetch
+    const resObject = data;
     console.log(resObject);
     img.src = resObject.icon_url;
     container.appendChild(img);
