@@ -5,17 +5,27 @@ const p = document.querySelector('.content');
 const img = document.querySelector('img');
 const url = `https://api.chucknorris.io/jokes/random`;
 
-btn.addEventListener('click', () => {
+btn.addEventListener('click', async () => {
     //Promise approach
     // loadJoke(url)
     //     .then((response) => displayData(response))
     //     .catch(err => console.log(err));
 
     // fetch approach
-    fetch(url)
-        .then((data) => data.json())
-        .then(response => displayData(response))
-        .catch(err => console.log(err));
+    // fetch(url)
+    //     .then((data) => data.json())
+    //     .then(response => displayData(response))
+    //     .catch(err => console.log(err));
+
+    // async and await approach
+    try {
+        const data = await fetch(url);
+        console.log(data);
+        const response = await data.json();
+        displayData(response);
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 function loadJoke(url) {
