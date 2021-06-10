@@ -35,6 +35,10 @@ form.addEventListener('submit', (e) => {
 
 
     checkRequired([username, email, password, cpassword]);
+    checkLength(username, 3, 25);
+    checkLength(password, 8, 35);
+    checkLength(cpassword, 8, 35);
+    checkPassword(password, cpassword);
 
 });
 
@@ -50,4 +54,23 @@ function checkRequired(inputArr) {
 
 function getId(id) {
     return id[0].toUpperCase() + id.slice(1);
+}
+
+function checkLength(input, min, max) {
+    if (input.value.trim().length < min) {
+        showError(input, `${getId(input.id)} should have at least ${min} characters`);
+    } else if (input.value.trim().length > max) {
+        showError(input, `${getId(input.id)} should have at max ${max} characters`);
+    }
+}
+
+function checkPassword(password, cpassword) {
+    if (password.value.trim().length === cpassword.value.trim().length) {
+        console.log(password.value.trim().toLowerCase() === cpassword.value.trim().toLowerCase());
+        if (password.value.trim().toLowerCase() === cpassword.value.trim().toLowerCase()) {
+            showSuccess(cpassword);
+        } else {
+            showError(cpassword, 'Password is not matching');
+        }
+    }
 }
