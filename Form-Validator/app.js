@@ -65,7 +65,7 @@ function checkLength(input, min, max) {
 }
 
 function checkPassword(password, cpassword) {
-    if (password.value.trim().length === cpassword.value.trim().length) {
+    if (password.value.trim().length === cpassword.value.trim().length && password.value.trim().length!==0) {
         console.log(password.value.trim().toLowerCase() === cpassword.value.trim().toLowerCase());
         if (password.value.trim().toLowerCase() === cpassword.value.trim().toLowerCase()) {
             showSuccess(cpassword);
